@@ -38,18 +38,18 @@ EMAIL = "trypillia.internat@gmail.com"
 MENU = [
 	("Головна", "index.html", []),
 	("Про нас", "about.html", [
-		("Історія школи", "history.html"),
+		("Історія", "history.html"),
 		("Адміністрація", "staff.html"),
 		("Педагогічний колектив", "staff2.html"),
 		("Документи для зарахування", "docs.html"),
 		("Матеріальна база", "mat_baza.html"),
 		("Партнерство та співпраця", "partnership.html"),
 	]),
-	("Навчання", "edu.html", [
+	("Освітній процес", "edu.html", [
 		("Організація освітнього процесу", "org_osvit.html"),
 		("Корекційно-розвиткова робота", "correct.html"),
 		("Індивідуальна програма розвитку", "ipr.html"),
-		("Дитяча організація", "child_organization.html"),
+		("Учнівське самоврядування", "child_organization.html"),
 		("Національно-патріотичне виховання", "nacional_patriot.html"),
 		("Бібліотека", "library.html"),
 		("Мережа класів", "mereg_class.html"),
@@ -58,7 +58,7 @@ MENU = [
 		("Гуртки", "child_club.html"),
 		("Розклад гуртків", "rozklad_club.html"),
 	]),
-	("Школа здоров'я", "health.html", []),
+	("Здоров’я", "health.html", []),
 	("Традиції", "tradition.html", []),
 	("Прозорість", "prozorist.html", [
 		("Статут", "statut.html"),
@@ -75,6 +75,8 @@ MENU = [
 		("Умови доступності", "dostupnist.html"),
 		("Правила поведінки здобувачів освіти", "rules.html"),
 		("Положення про дистанційне навчання", "dystant.html"),
+		("Плата за навчання та додаткові освітні послуги", "plata.html"),
+		("Порядок зарахування, відрахування та переведення учнів", "zarahuvannia.html"),
 	]),
 	("Антикорупція", "anti_corr_program.html", [
 		("Антикорупційна програма", "anti_corr_program.html"),
@@ -105,6 +107,9 @@ EXTERNAL_LINKS = [
 	("Департамент освіти і науки Київської ОВА", "https://www.kyiv-oblosvita.gov.ua/"),
 	("Національне агентство з питань запобігання корупції", "https://nazk.gov.ua/uk/"),
 	("Педагогічна преса", "https://pedpresa.com/"),
+	("Державна служба якості освіти України", "https://sqe.gov.ua/"),
+	("Інститут спеціальної педагогіки і психології імені Миколи Ярмаченка НАПН України", "https://ispukr.org.ua/"),
+	("Законодавство України — Верховна Рада України", "https://zakon.rada.gov.ua/laws/main"),
 ]
 
 ICON_A11Y = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>'
@@ -405,7 +410,7 @@ def header_html(current):
 
 
 def footer_html():
-	links = [("Про нас", "about.html"), ("Навчання", "edu.html"), ("Новини", "news.html"),
+	links = [("Про нас", "about.html"), ("Освітній процес", "edu.html"), ("Новини", "news.html"),
 		("Прозорість", "prozorist.html"), ("Антикорупція", "anti_corr_program.html"),
 		("Умови доступності", "dostupnist.html"), ("Вакансії", "vacation.html"), ("Контакти", "address.html")]
 	li = "\n".join('\t\t\t\t\t<li><a href="./%s">%s</a></li>' % (h, esc(n)) for n, h in links)
