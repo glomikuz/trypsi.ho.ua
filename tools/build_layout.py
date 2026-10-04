@@ -70,7 +70,7 @@ MENU = [
 		("Кошторис і фінансовий звіт", "koshtoris.html"),
 		("Благодійна допомога", "blago.html"),
 		("Організація харчування", "dining.html"),
-		("Кодекс безпечного освітнього середовища", "codex.html"),
+		("Положення про запобігання та протидію насильству та жорстокому поводженню з дітьми", "nasylstvo.html"),
 		("Моніторинг якості освіти", "monitoring.html"),
 		("Умови доступності", "dostupnist.html"),
 		("Правила поведінки здобувачів освіти", "rules.html"),
@@ -98,6 +98,7 @@ EXTRA_PARENT = {
 	"anti_corr.html": "anti_corr_program.html",
 	"dblago.html": "prozorist.html",
 	"news_old.html": "news.html",
+	"codex.html": "prozorist.html",
 }
 
 EXTERNAL_LINKS = [
