@@ -368,6 +368,15 @@ a:focus-visible {
 .prose th, .prose td { border: 1px solid var(--c-border-strong); padding: var(--s1) var(--s2); text-align: left; vertical-align: top; }
 .prose th { background: var(--c-surface); font-weight: 500; }
 .prose table p { margin: 0; }
+/* Таблиці, перенесені з документів (розклад, мережа класів) */
+.prose table.schedule { font-size: 0.875rem; table-layout: fixed; min-width: 640px; }
+.prose .schedule th, .prose .schedule td { padding: 6px; overflow-wrap: break-word; hyphens: auto; }
+.prose .schedule .num { width: 2.5em; text-align: center; font-weight: 600; }
+.prose .schedule tr.day-row th { background: var(--c-surface); font-weight: 600; font-size: 1rem; }
+.prose tr.total td { font-weight: 600; background: var(--c-surface); }
+.prose .doc-subtitle { font-weight: 600; }
+.prose .doc-approve { text-align: right; }
+.prose .doc-sign { margin-top: var(--s3); }
 
 .prose .lead { font-size: 1.25rem; line-height: 1.5; color: var(--c-text-2); margin-bottom: var(--s4); }
 
