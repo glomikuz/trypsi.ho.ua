@@ -152,13 +152,13 @@
 		dlg.innerHTML =
 			'<div class="lightbox-bar">' +
 				'<span class="lightbox-count" aria-live="polite"></span>' +
-				'<span>' +
-					'<button type="button" class="btn" data-step="-1">← Попереднє</button> ' +
-					'<button type="button" class="btn" data-step="1">Наступне →</button> ' +
-					'<button type="button" class="btn" data-close>Закрити ✕</button>' +
-				'</span>' +
+				'<button type="button" class="btn" data-close>Закрити ✕</button>' +
 			'</div>' +
-			'<div class="lightbox-stage"><img alt=""></div>';
+			'<div class="lightbox-stage"><img alt=""></div>' +
+			'<div class="lightbox-nav">' +
+				'<button type="button" class="btn" data-step="-1">← Попереднє</button>' +
+				'<button type="button" class="btn" data-step="1">Наступне →</button>' +
+			'</div>';
 		document.body.appendChild(dlg);
 		var img = dlg.querySelector("img");
 		var count = dlg.querySelector(".lightbox-count");
