@@ -370,7 +370,7 @@ def header_html(current):
 <header class="site-header">
 	<div class="container header-top">
 		<a class="brand" href="./index.html"{' aria-current="page"' if current == "index.html" else ""}>
-			<img class="brand-gerb" src="./assets/gerb.svg" alt="Малий Державний Герб України" width="40" height="56">
+			<img class="brand-gerb" src="./assets/gerb-digital.svg" alt="Малий Державний Герб України" width="48" height="48">
 			<span class="brand-divider" aria-hidden="true"></span>
 			<img class="brand-logo" src="./image/logo2.png" alt="" width="58" height="50">
 			<span class="brand-text">
@@ -499,7 +499,7 @@ def page_html(current, title, description, content, top="", bottom="", aside=Non
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{esc(doc_title)}</title>
 	<meta name="description" content="{esc(description)}">
-	<link rel="icon" href="./assets/gerb.svg" type="image/svg+xml">
+	<link rel="icon" href="./assets/gerb-digital.svg" type="image/svg+xml">
 	<link rel="preload" href="./assets/fonts/e-Ukraine-Regular.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="./css/style.css?v={asset_version()}">
 	<script>try{{var p=JSON.parse(localStorage.getItem("trypsi-a11y"))||{{}};var r=document.documentElement;r.dataset.font=p.font||"0";if(p.contrast)r.dataset.contrast="high";if(p.underline)r.dataset.underline="on"}}catch(e){{}}</script>
