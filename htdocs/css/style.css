@@ -324,9 +324,9 @@ a:focus-visible {
 
 /* Широкий екран: великі герб і логотип займають обидва рядки шапки, меню починається під назвою */
 @media (min-width: 1440px) {
-	.site-header { --mark: 80px; --brand-gap: 12px; }
+	.site-header { --mark: 80px; --brand-gap: 12px; --mark-shift: 13px; }   /* зсув, щоб логотипи стояли по центру висоти шапки */
 	.brand { align-self: stretch; align-items: center; gap: var(--brand-gap); }
-	.brand-gerb, .brand-divider, .brand-logo { align-self: flex-start; margin-bottom: calc(50px - var(--mark)); }
+	.brand-gerb, .brand-divider, .brand-logo { align-self: flex-start; margin-top: var(--mark-shift); margin-bottom: calc(50px - var(--mark) - var(--mark-shift)); }
 	.brand-gerb { width: var(--mark); height: var(--mark); }
 	.brand-divider { height: var(--mark); }
 	.brand-logo { width: calc(var(--mark) * 58 / 50); height: var(--mark); }
