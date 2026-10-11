@@ -383,6 +383,13 @@ def header_html(current):
 			<button type="button" class="btn menu-toggle" aria-expanded="false" aria-controls="main-nav">{ICON_MENU}<span class="btn-label">Меню</span></button>
 		</div>
 	</div>
+	<nav class="main-nav" id="main-nav" aria-label="Головне меню">
+		<div class="container">
+		<ul>
+{nav_html(current)}
+		</ul>
+		</div>
+	</nav>
 	<section class="a11y-panel" id="a11y-panel" aria-labelledby="a11y-title" hidden>
 		<div class="container">
 			<h2 id="a11y-title" tabindex="-1">Налаштування доступності</h2>
@@ -403,13 +410,6 @@ def header_html(current):
 			</div>
 		</div>
 	</section>
-	<nav class="main-nav" id="main-nav" aria-label="Головне меню">
-		<div class="container">
-		<ul>
-{nav_html(current)}
-		</ul>
-		</div>
-	</nav>
 </header>'''
 
 

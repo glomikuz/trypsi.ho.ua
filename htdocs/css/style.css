@@ -322,6 +322,19 @@ a:focus-visible {
 	.main-nav li.is-open > .submenu { display: block; }
 }
 
+/* Широкий екран: великі герб і логотип займають обидва рядки шапки, меню починається під назвою */
+@media (min-width: 1440px) {
+	.site-header { --mark: 80px; --brand-gap: 12px; }
+	.brand { align-self: stretch; align-items: center; gap: var(--brand-gap); }
+	.brand-gerb, .brand-divider, .brand-logo { align-self: flex-start; margin-bottom: calc(50px - var(--mark)); }
+	.brand-gerb { width: var(--mark); height: var(--mark); }
+	.brand-divider { height: var(--mark); }
+	.brand-logo { width: calc(var(--mark) * 58 / 50); height: var(--mark); }
+	.brand-text { position: relative; }
+	.main-nav > .container > ul { padding-left: calc(var(--mark) + var(--mark) * 58 / 50 + 1px + var(--brand-gap) * 3); }
+	.main-nav { border-top: 0; }
+}
+
 /* ---------- Хлібні крихти ---------- */
 .breadcrumbs { padding: var(--s3) 0 0; font-size: 0.875rem; }
 .breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s1); }
