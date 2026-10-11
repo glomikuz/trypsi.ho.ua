@@ -378,6 +378,11 @@ def header_html(current):
 				<span class="brand-name">{esc(ORG_NAME)}</span>
 			</span>
 		</a>
+		<nav class="main-nav" id="main-nav" aria-label="Головне меню">
+			<ul>
+{nav_html(current)}
+			</ul>
+		</nav>
 		<div class="header-actions">
 			<button type="button" class="btn a11y-toggle" aria-expanded="false" aria-controls="a11y-panel">{ICON_A11Y}<span class="btn-label">Доступність</span><span class="visually-hidden"> — налаштування для людей з порушенням зору</span></button>
 			<button type="button" class="btn menu-toggle" aria-expanded="false" aria-controls="main-nav">{ICON_MENU}<span class="btn-label">Меню</span></button>
@@ -403,13 +408,6 @@ def header_html(current):
 			</div>
 		</div>
 	</section>
-	<nav class="main-nav" id="main-nav" aria-label="Головне меню">
-		<div class="container">
-		<ul>
-{nav_html(current)}
-		</ul>
-		</div>
-	</nav>
 </header>'''
 
 
