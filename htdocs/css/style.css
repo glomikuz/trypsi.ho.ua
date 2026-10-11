@@ -525,8 +525,8 @@ a:focus-visible {
 .home-layout > .content { grid-column: 1 / -1; }
 .home-layout > .links { grid-column: 1 / -1; margin-top: var(--s6); }
 @media (min-width: 1100px) {
-	.home-layout { grid-template-columns: minmax(0, var(--measure)) minmax(256px, var(--aside)); column-gap: var(--s8); justify-content: space-between; }
-	.home-layout > .content { grid-column: 1; }
+	.home-layout { grid-template-columns: minmax(0, 1fr) minmax(256px, var(--aside)); column-gap: var(--s8); }
+	.home-layout > .content { grid-column: 1; max-width: none; }
 	.home-layout > .links { grid-column: 2; margin-top: 0; }
 }
 .links h2 { font-size: 1.25rem; margin: 0 0 var(--s2); }
