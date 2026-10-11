@@ -1,24 +1,31 @@
-## Кодировка документов
+## Кодування документів
 AddDefaultCharset utf-8
 #AddDefaultCharset koi8-u
 #AddDefaultCharset windows-1251
 
-## Файл индексного документа
+## Постійне перенаправлення (301) з http:// на https://
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+## Файл індексного документа
 #DirectoryIndex index.shtml index.html index.htm index.php
 
-## Воспринимать файлы *.html как SSI
+## Обробляти файли *.html як SSI
 #AddHandler server-parsed .html
 
-## Включить парсинг SSI выражений в устаревшем формате
+## Увімкнути розбір SSI-виразів у застарілому форматі
 #SSILegacyExprParser on
 
-## Разрешение вывода содержимого каталога
+## Дозвіл показу вмісту каталогу
 #Options +Indexes
 
-## Не писать в access.log информацию о файлах *.gif и *.jpg
+## Не записувати в access.log інформацію про файли *.gif та *.jpg
 #SetEnvIf Request_URI \.gif$ access_log
 #SetEnvIf Request_URI \.jpg$ access_log
 
 
 AddHandler cgi-script .cgi .py
-
