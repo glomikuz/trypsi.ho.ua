@@ -11,6 +11,9 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+## Сторінки, які перенесено
+Redirect 301 /osvit.html /odvit_prog.html
+
 ## Файл індексного документа
 #DirectoryIndex index.shtml index.html index.htm index.php
 

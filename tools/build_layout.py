@@ -96,7 +96,6 @@ MENU = [
 EXTRA_PARENT = {
 	"metod_work.html": "edu.html",
 	"bulling.html": "prozorist.html",
-	"osvit.html": "prozorist.html",
 	"status.html": "about.html",
 	"anti_corr.html": "anti_corr_program.html",
 	"dblago.html": "prozorist.html",
@@ -115,9 +114,31 @@ EXTERNAL_LINKS = [
 	("Законодавство України — Верховна Рада України", "https://zakon.rada.gov.ua/laws/main"),
 ]
 
+# Короткі описи плиток на сторінці-покажчику «Прозорість»
+SECTION_DESC = {
+	"statut.html": "Нова редакція, затверджена Київською обласною радою 29 травня 2025 року",
+	"licenziia.html": "Ліцензія на освітню діяльність у сфері загальної середньої освіти",
+	"odvit_prog.html": "Програми на 2026–2027 і попередні навчальні роки",
+	"ptog_pot.html": "Ліцензований обсяг — 70 учнів; скільки навчається у 2026/2027 році",
+	"vacation.html": "Вільні посади та як подати заявку",
+	"mat_baza.html": "Приміщення, кабінети й обладнання для навчання, корекції та побуту",
+	"report.html": "Звіти директора за 2023–2026 навчальні роки",
+	"koshtoris.html": "Кошториси та фінансова звітність за різні роки",
+	"blago.html": "Від кого і скільки коштів отримав Центр у 2026 році",
+	"dining.html": "П’ятиразове харчування, контроль якості та меню",
+	"nasylstvo.html": "Види насильства, неприпустима поведінка та заходи запобігання",
+	"monitoring.html": "Як Центр перевіряє і покращує якість освіти",
+	"dostupnist.html": "Доступність приміщень, території та освітнього середовища",
+	"rules.html": "Правила безпечної та доброзичливої поведінки учнів",
+	"dystant.html": "Як організовано навчання на відстані",
+	"plata.html": "Навчання безоплатне; платних послуг зараз немає",
+	"zarahuvannia.html": "Умови та процедура зарахування, переведення й відрахування учнів",
+}
+
 ICON_A11Y = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>'
 	'<circle cx="12" cy="6.5" r="1.75" fill="currentColor"/><path d="M6.5 9.25 12 10.5l5.5-1.25M12 10.5v3.5m0 0-2.5 5m2.5-5 2.5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
-ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+ICON_MENU = '<svg class="i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+ICON_CLOSE = '<svg class="i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
 ICON_CHEVRON = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 6 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ICON_EXT = '<svg class="ext-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9 2h5v5M14 2 7 9M12 10v4H2V4h4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 EXT_SUFFIX = ICON_EXT + '<span class="visually-hidden"> (відкриється в новій вкладці)</span>'
@@ -374,12 +395,12 @@ def header_html(current):
 			<img class="brand-logo" src="./image/logo2.png" alt="" width="58" height="50">
 			<span class="brand-text">
 				<span class="brand-owner">{esc(ORG_OWNER)}</span>
-				<span class="brand-name">{esc(ORG_NAME)}</span>
+				<span class="brand-name"><span class="brand-name-full">{esc(ORG_NAME)}</span><span class="brand-name-short" aria-hidden="true">{esc(ORG_SHORT)}</span></span>
 			</span>
 		</a>
 		<div class="header-actions">
 			<button type="button" class="btn a11y-toggle" aria-expanded="false" aria-controls="a11y-panel">{ICON_A11Y}<span class="btn-label">Доступність</span><span class="visually-hidden"> — налаштування для людей з порушенням зору</span></button>
-			<button type="button" class="btn menu-toggle" aria-expanded="false" aria-controls="main-nav">{ICON_MENU}<span class="btn-label">Меню</span></button>
+			<button type="button" class="btn menu-toggle" aria-expanded="false" aria-controls="main-nav">{ICON_MENU}{ICON_CLOSE}<span class="btn-label">Меню</span></button>
 		</div>
 	</div>
 	<nav class="main-nav" id="main-nav" aria-label="Головне меню">
@@ -515,41 +536,50 @@ def page_html(current, title, description, content, top="", bottom="", aside=Non
 
 # ---------------------------------------------------------------- головна та «Прозорість»
 
-def build_home_content(src):
-	welcome = find_div(src, "Content3Column")
-	welcome = re.sub(r"<h1>.*?</h1>", "", welcome, flags=re.S)
-	welcome = re.sub(r"<p>\s*<img[^>]*>\s*</p>", "", welcome)
-	welcome = clean_content(welcome, ORG_NAME)
-	welcome = re.sub(r"<(/?)h2>", r"<\1h3>", welcome)   # підрозділи всередині «Про Центр»
-	welcome = re.sub(r"^\s*<p>(.*?)</p>", "", welcome, count=1, flags=re.S)   # перший абзац іде в лід
+HOME_TITLE = "Допомагаємо кожній дитині ставати самостійною"
+HOME_LEAD = ("Наш Центр — це простір, у якому навчання поєднується з корекційно-розвитковою та реабілітаційною роботою, "
+	"турботою про здоров’я, безпеку, емоційний добробут і формування життєвої самостійності дитини.")
 
-	cards = [
-		("Освітня програма", "Чого і як навчаються діти в Центрі", "./odvit_prog.html"),
-		("Документи для зарахування", "Що потрібно, щоб дитина почала навчання", "./docs.html"),
-		("Розклад уроків", "Розклад на поточний навчальний рік", "./rozklad.html"),
-		("Новини", "Події та життя Центру", "./news.html"),
-		("Звіт директора", "Річний звіт про діяльність закладу", "./report.html"),
-		("Стоп булінг", "Як ми запобігаємо цькуванню і куди звернутися", "./bulling.html"),
-		("Методична робота", "Педагогічна тема та професійний розвиток", "./metod_work.html"),
-		("Прозорість", "Статут, кошторис, звіти та інші документи", "./prozorist.html"),
-	]
+# Головне про Центр; повний текст — на сторінці «Про нас»
+HOME_FACTS = [
+	("Індивідуальний підхід", "Навчання будуємо з урахуванням можливостей, потреб і темпу розвитку кожної дитини. Для кожної є індивідуальна програма розвитку."),
+	("Корекційно-розвиткова робота", "Розвиваємо мовлення, комунікацію, моторику, навички самообслуговування та життєві компетентності."),
+	("Безпека і здоров’я", "Медичний пункт, повноцінне харчування, режим дня та укриття, у якому можна проводити уроки."),
+	("Разом із батьками", "Педагоги, фахівці й родини працюють разом, щоб кожна дитина відчувала власний успіх."),
+]
+
+HOME_CARDS = [
+	("Освітня програма", "Чого і як навчаються діти в Центрі", "./odvit_prog.html"),
+	("Документи для зарахування", "Що потрібно, щоб дитина почала навчання", "./docs.html"),
+	("Розклад уроків", "Розклад на поточний навчальний рік", "./rozklad.html"),
+	("Новини", "Події та життя Центру", "./news.html"),
+	("Звіт директора", "Річний звіт про діяльність закладу", "./report.html"),
+	("Стоп булінг", "Як ми запобігаємо цькуванню і куди звернутися", "./bulling.html"),
+	("Методична робота", "Педагогічна тема та професійний розвиток", "./metod_work.html"),
+	("Прозорість", "Статут, кошторис, звіти та інші документи", "./prozorist.html"),
+]
+
+
+def build_home_content():
+	"""Головна повністю генерується з констант вище — вручну index.html не правити."""
 	cards_html = "\n".join(
-		f'\t\t\t<li class="card"><h3><a href="{h}">{esc(t)}</a></h3><p>{esc(d)}</p></li>' for t, d, h in cards)
+		f'\t\t\t<li class="card"><h3><a href="{h}">{esc(t)}</a></h3><p>{esc(d)}</p></li>' for t, d, h in HOME_CARDS)
+	facts_html = "\n".join(
+		f'\t\t\t<li><h3>{esc(t)}</h3><p>{esc(d)}</p></li>' for t, d in HOME_FACTS)
 	links_html = "\n".join(
-		f'\t\t\t\t\t<li><a href="{h}" target="_blank" rel="noopener">{esc(n)}{EXT_SUFFIX}</a></li>' for n, h in EXTERNAL_LINKS)
+		f'\t\t\t<li><a href="{h}" target="_blank" rel="noopener">{esc(n)}{EXT_SUFFIX}</a></li>' for n, h in EXTERNAL_LINKS)
 
 	return f'''<section class="hero">
 	<div class="container hero-grid">
 		<div class="hero-text">
-			<h1 class="visually-hidden">{esc(ORG_NAME)}</h1>
-			<p class="hero-lead">Наш Центр — це простір, у якому навчання поєднується з корекційно-розвитковою та реабілітаційною роботою, турботою про здоров’я, безпеку, емоційний добробут і формування життєвої самостійності дитини.</p>
+			<h1>{esc(HOME_TITLE)}</h1>
+			<p class="hero-lead">{esc(HOME_LEAD)}</p>
 			<div class="hero-actions">
 				<a class="btn btn-primary" href="./docs.html">Як вступити до Центру</a>
-				<a class="btn" href="./address.html">Контакти</a>
 			</div>
 		</div>
 		<div class="hero-media">
-			<img src="./image/image001.jpg" alt="Головний корпус Центру та шкільне подвір’я з алеєю берез" width="1280" height="410">
+		{slider_html()}
 		</div>
 	</div>
 </section>
@@ -562,24 +592,53 @@ def build_home_content(src):
 		</ul>
 	</section>
 
-	<div class="home-section home-layout">
-		<section class="content prose" aria-labelledby="about-title">
-			<h2 id="about-title">Про Центр</h2>
-{welcome}
-		</section>
-		<nav class="links" aria-labelledby="links-title">
-			<h2 id="links-title">Корисні посилання</h2>
-			<ul>
+	<!-- latest-news:start --><!-- latest-news:end -->
+
+	<section class="home-section" aria-labelledby="about-title">
+		<h2 id="about-title">Про Центр</h2>
+		<ul class="facts">
+{facts_html}
+		</ul>
+		<p class="more-link"><a href="./about.html">Детальніше про Центр</a></p>
+	</section>
+
+	<nav class="home-section links" aria-labelledby="links-title">
+		<h2 id="links-title">Корисні посилання</h2>
+		<ul>
 {links_html}
-			</ul>
-		</nav>
-	</div>
+		</ul>
+	</nav>
 </div>'''
+
+
+def doc_count(href):
+	"""Кількість документів (карток .doc) на сторінці."""
+	path = os.path.join(ROOT, href)
+	if not os.path.exists(path):
+		return 0
+	return len(re.findall(r'class="doc"', extract_new(open(path, encoding="utf-8").read()) or ""))
+
+
+def plural_docs(n):
+	if n % 10 == 1 and n % 100 != 11:
+		word = "документ"
+	elif 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+		word = "документи"
+	else:
+		word = "документів"
+	return "%d %s" % (n, word)
 
 
 def build_section_index(section_href):
 	name, href, subs = next(m for m in MENU if m[1] == section_href)
-	lis = "\n".join('<li class="card"><h2><a href="./%s">%s</a></h2></li>' % (h, esc(n)) for n, h in subs)
+	items = []
+	for n, h in subs:
+		desc = SECTION_DESC.get(h, "")
+		count = doc_count(h)
+		desc_html = "<p>%s</p>" % esc(desc) if desc else ""
+		meta_html = '<p class="card-meta">%s</p>' % plural_docs(count) if count else ""
+		items.append('<li class="card"><h2><a href="./%s">%s</a></h2>%s%s</li>' % (h, esc(n), desc_html, meta_html))
+	lis = "\n".join(items)
 	return f'''<h1>{esc(name)}</h1>
 <p class="lead">Інформація про діяльність закладу та документи, які заклад освіти оприлюднює відповідно до статті 30 Закону України «Про освіту».</p>
 <ul class="cards">
@@ -592,28 +651,20 @@ def build_section_index(section_href):
 # ---------------------------------------------------------------- слайдер на головній
 
 SLIDES = [
-	("image/image001.jpg", "Головний корпус Центру та шкільне подвір’я з алеєю берез"),
-	("image/slider/image_01.jpg", "Педагогиня грається з учнями м’якими іграшками в ігровій кімнаті"),
-	("image/slider/image_02.jpg", "Учні виконують гімнастичні вправи у спортивній залі"),
-	("image/slider/image_03.jpg", "Дівчинки грають на сопілці на уроці музики"),
-	("image/slider/image_04.jpg", "Хлопчик грається з розвивальним лабіринтом із намистинами"),
-	("image/slider/image_05.jpg", "Діти відпочивають серед м’яких модулів у сенсорній кімнаті"),
-	("image/slider/image_06.jpg", "Хлопчик обідає в їдальні Центру"),
-	("image/slider/image_07.jpg", "Стіна ігрової кімнати з усміхненим сонечком"),
-	("image/slider/image_08.jpg", "Педагогиня займається з групою хлопчиків за столом"),
-	("image/slider/image_09.jpg", "Учні з м’ячами та обручами на занятті з фізкультури"),
-	("image/slider/image_10.jpg", "Хлопчик грає в лікаря зі стетоскопом і лялькою"),
-	("image/slider/image_11.jpg", "Учні на занятті в класі"),
-	("image/slider/image_12.jpg", "Хлопчики працюють за комп’ютером у класі"),
+	("image/home/slide-1.jpg", "Усміхнена учениця тримає ведмедика, якого виготовила на занятті", "Ведмедик, зроблений своїми руками"),
+	("image/home/slide-2.jpg", "Двоє хлопчиків пензликами розфарбовують фігурки ялинки та рукавички", "Розфарбовуємо новорічні прикраси"),
+	("image/home/slide-3.jpg", "Учні разом проводять кульку лабіринтом на свіжому повітрі", "Гра-лабіринт на свіжому повітрі"),
+	("image/home/slide-4.jpg", "Педагогиня показує дітям картку, діти сидять навколо неї на килимі", "Заняття в колі з педагогинею"),
+	("image/home/slide-5.jpg", "Дві учениці плетуть іграшки з пухнастої пряжі", "Плетемо з пухнастої пряжі"),
 ]
 
 
 def slider_html():
 	n = len(SLIDES)
 	slides = "\n".join(
-		'\t\t\t\t<li class="slide%s" aria-roledescription="слайд" aria-label="%d з %d"><img src="./%s" alt="%s" width="990" height="330"%s></li>'
-		% (" is-active" if i == 0 else "", i + 1, n, src, esc(alt), "" if i == 0 else ' loading="lazy"')
-		for i, (src, alt) in enumerate(SLIDES))
+		'\t\t\t\t<li class="slide%s" aria-roledescription="слайд" aria-label="%d з %d"><figure><img src="./%s" alt="%s" width="1200" height="900"%s><figcaption>%s</figcaption></figure></li>'
+		% (" is-active" if i == 0 else "", i + 1, n, src, esc(alt), "" if i == 0 else ' loading="lazy"', esc(cap))
+		for i, (src, alt, cap) in enumerate(SLIDES))
 	dots = "".join(
 		'<button type="button" class="slider-dot" data-go="%d" aria-label="Фото %d"%s></button>' % (i, i + 1, ' aria-current="true"' if i == 0 else "")
 		for i in range(n))
@@ -636,7 +687,6 @@ def slider_html():
 
 NEWS_DIR = "news"
 NEWS_PER_PAGE = 10
-DEFAULT_NEWS_IMAGE = "./assets/news-default.svg"   # обкладинка для новин без фото
 MONTHS_GEN = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"]
 MONTHS_NOM = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"]
 
@@ -701,9 +751,22 @@ def time_html(n, cls="news-date"):
 	return '<time class="%s" datetime="%s">%s</time>' % (cls, n["date"], format_date(n["date"]))
 
 
+def date_tile(d):
+	"""Плитка з датою для новини без фото — замість однакової картинки в усіх таких новин."""
+	parts = d.split("-") if d else []
+	if len(parts) == 3:
+		big, small = str(int(parts[2])), "%s %s" % (MONTHS_GEN[int(parts[1]) - 1], parts[0])
+	elif len(parts) == 2:
+		big, small = MONTHS_NOM[int(parts[1]) - 1], parts[0]
+	else:
+		big, small = d or ORG_SHORT, ""
+	cls = "date-tile" if big.isdigit() else "date-tile date-tile--word"
+	return '<span class="%s" aria-hidden="true"><span class="date-tile-big">%s</span><span class="date-tile-small">%s</span></span>' % (cls, esc(big), esc(small))
+
+
 def news_card(n, heading="h2"):
 	img = thumbnail(n["image"])
-	pic = '<img src="%s" alt="" loading="lazy">' % (img or DEFAULT_NEWS_IMAGE)
+	pic = '<img src="%s" alt="" loading="lazy">' % img if img else date_tile(n["date"])
 	return f'''<li class="news-item">
 	<div class="news-thumb">{pic}</div>
 	<div class="news-body">
@@ -765,8 +828,6 @@ def build_news(items):
 			'\t\t\t\t<li><a href="./%s"><span class="news-aside-title">%s</span>%s</a></li>' % (o["file"], esc(o["title"]), ("<span class=\"news-aside-date\">%s</span>" % format_date(o["date"])) if o["date"] else "")
 			for o in others)
 		top = "\n" + time_html(n) if n["date"] else ""
-		if not n["image"]:
-			top += '\n<img class="news-cover" src="%s" alt="" width="1200" height="800">' % DEFAULT_NEWS_IMAGE
 		bottom = '\n<p class="news-back"><a href="./news.html">← Усі новини</a></p>'
 		content = clean_content(n["content"], n["title"])
 		out = page_html(n["file"], n["title"], n["description"], content, top=top, bottom=bottom, aside=aside)
@@ -810,11 +871,9 @@ def main():
 		path = os.path.join(ROOT, name)
 		src = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
 		description = meta_description(src) or "Офіційний сайт: %s" % ORG_FULL
-		content = extract_new(src)
+		content = build_home_content() if name == "index.html" else extract_new(src)
 		if content is None:
-			if name == "index.html":
-				content = build_home_content(src)
-			elif name == "prozorist.html":
+			if name == "prozorist.html":
 				content = build_section_index("prozorist.html")
 				description = "Прозорість та інформаційна відкритість закладу"
 			else:

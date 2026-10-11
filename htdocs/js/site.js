@@ -24,6 +24,7 @@
 		menuBtn.addEventListener("click", function () {
 			var open = menuBtn.getAttribute("aria-expanded") !== "true";
 			menuBtn.setAttribute("aria-expanded", String(open));
+			menuBtn.querySelector(".btn-label").textContent = open ? "Закрити" : "Меню";
 			nav.classList.toggle("is-open", open);
 		});
 	}
