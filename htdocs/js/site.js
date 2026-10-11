@@ -52,6 +52,15 @@
 	document.addEventListener("click", function (e) {
 		if (!e.target.closest(".main-nav")) closeAllSubmenus();
 	});
+	// Підменю закривається, коли фокус клавіатури виходить за його межі
+	document.querySelectorAll(".main-nav li").forEach(function (li) {
+		li.addEventListener("focusout", function (e) {
+			if (!li.classList.contains("is-open") || li.contains(e.relatedTarget)) return;
+			var btn = li.querySelector(".sub-toggle");
+			if (btn) btn.setAttribute("aria-expanded", "false");
+			li.classList.remove("is-open");
+		});
+	});
 
 	/* ---------- Панель доступності ---------- */
 	var prefs = loadPrefs();

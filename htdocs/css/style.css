@@ -74,6 +74,7 @@
 	--c-focus-text: #000000;
 }
 :root[data-contrast="high"] img { filter: grayscale(1) contrast(1.1); }
+:root[data-contrast="high"] .brand-gerb { filter: invert(1); }   /* чорний герб на чорному тлі не видно */
 
 /* Розмір тексту (панель «Доступність») */
 html { font-size: 100%; }
@@ -304,7 +305,6 @@ a:focus-visible {
 		display: none;
 	}
 	.main-nav li:hover > .submenu,
-	.main-nav li:focus-within > .submenu,
 	.main-nav li.is-open > .submenu { display: block; }
 	.main-nav li:nth-last-child(-n+4) > .submenu { left: auto; right: 0; }
 }
