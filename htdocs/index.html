@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru-ru" >
-<head><meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<html lang="uk">
+<head><meta charset="UTF-8">
 
 	
 	
@@ -16,48 +16,25 @@
 
 </head>
 
-<body class="body_3506" style="position: relative; min-height: 100%; top: 0px;"onload="slideshow()">
-<script type="text/javascript">
-	var Image = new Array(
-							"url('./image/slider/image_01.jpg')",
-							"url('./image/slider/image_02.jpg')",
-							"url('./image/slider/image_03.jpg')",
-							"url('./image/slider/image_04.jpg')",
-							"url('./image/slider/image_05.jpg')",
-							"url('./image/slider/image_06.jpg')",
-							"url('./image/slider/image_07.jpg')",
-							"url('./image/slider/image_08.jpg')",
-							"url('./image/slider/image_09.jpg')",
-							"url('./image/slider/image_10.jpg')",
-							"url('./image/slider/image_11.jpg')",
-							"url('./image/slider/image_12.jpg')"
-	);
-
-
-	var i = 0;
-	var l = Image.length-1;
-
-	function change(n) {
-
-		i = i + n;
-
-		if ( i > l ) { 
-
-			i = 0;
+<body class="body_3506" style="position: relative; min-height: 100%; top: 0px;">
+<script>
+	// Слайдер у шапці: змінює фон блоку #slider кожні 3 секунди
+	document.addEventListener("DOMContentLoaded", function () {
+		var slider = document.getElementById("slider");
+		if (!slider || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		var slides = [];
+		for (var n = 1; n <= 12; n++) {
+			slides.push("./image/slider/image_" + (n < 10 ? "0" : "") + n + ".jpg");
 		}
-
-		document.getElementById("slider").style.backgroundImage = Image[i];
-		
-
-	}
-
-	function slideshow() {
-
-		setInterval("change(1)",3000)
-
-		
-	}
-
+		var i = 0;
+		new Image().src = slides[1];
+		setInterval(function () {
+			if (document.hidden) return;
+			i = (i + 1) % slides.length;
+			slider.style.backgroundImage = "url('" + slides[i] + "')";
+			new Image().src = slides[(i + 1) % slides.length]; // підвантажити наступний кадр заздалегідь
+		}, 3000);
+	});
 </script>
 
 <!-- Wrapper -->
@@ -78,14 +55,14 @@
 		>
 <div class="wrapper">
 	<div id="logobar">
-		<h1><a href="http://trypsi.ho.ua"><img src="./image/logo2.png"></a></h1>
+		<h1><a href="./index.html"><img alt="КЗ КОР «Трипільський навчально-реабілітаційний центр» — на головну" src="./image/logo2.png"></a></h1>
 	</div>
 
 
 	<div id="navholder">
 		<nav style="display: block;">
 			<ul id="dmenu" class="nav">
-				<li><a href="http://trypsi.ho.ua">Головна</a></li>
+				<li><a href="./index.html">Головна</a></li>
 				<li><a href="./about.html">Про нас</a>
 					<ul>
 						<li><a href="./history.html">Історія</a></li>
@@ -170,7 +147,7 @@
 <div class="Content3Column" style="text-align: justify-all;">
 
 <h1>Ласкаво просимо до<strong>Трипільського навчально-реабілітаційного центру!</strong></h1>
-<p><img class="img-welcome"  style="width: 100%; height: 100%; border: 200px" src="./image/image001.jpg"></p>
+<p><img alt="Головний корпус Центру та шкільне подвір’я з алеєю берез" class="img-welcome"  style="width: 100%; height: 100%; border: 200px" src="./image/image001.jpg"></p>
 
 <p style="text-align: justify;">Наш Центр — це простір, у якому навчання поєднується з корекційно-розвитковою та реабілітаційною роботою, турботою про здоров’я, безпеку, емоційний добробут і формування життєвої самостійності дитини.</p>
 
@@ -260,19 +237,15 @@
 			<nav id="SideHeadingDiary" class="SideHeading">
 			
 				<h2>Корисні посилання</h2>
-<div style="text-align: center;">
-<!--<p><a href="http://www.la-strada.org.ua/" target="_blank"><img src="http://la-strada.org.ua/La_strada_1_3.gif" alt="" width="90" height="120"></a> </p>
-<p><a href="http://www.la-strada.org.ua/" target="_blank"><img src="http://la-strada.org.ua/La_strada_2_2.gif" width="90" height="120"></a> </p>
--->
-<p><a href="https://www.kmu.gov.ua/" target="_blank"><img src="./image/banners/2kmu2.gif" alt="" width="160" height="60"></a> </p>
-<p><a href="http://koda.gov.ua/" target="_blank"><img src="./image/banners/kova.png" alt="" width="160" height="60"></a> </p>
-<p><a href="http://mon.gov.ua/" target="_blank"><img src="./image/banners/mon1.gif" alt="" width="160" height="60"></a> </p>
-<p><a href="http://pedpresa.com/" target="_blank"><img src="./image/banners/pedpressa.gif" alt="" width="160" height="60"></a> </p>
-<p><a href="http://www.kyiv-oblosvita.gov.ua/" target="_blank"><img src="./image/banners/dep.jpg" width="160" height="60" alt=""></a> </p>
-<p><a href="https://nazk.gov.ua/uk/" target="_blank"><img src="./image/banners/nazk.png" alt="" width="160" height="60"></a> </p>
-<p><a href="https://sqe.gov.ua/" target="_blank" rel="noopener" style="display: block; width: 160px; margin: 0 auto 10px; padding: 8px 6px; box-sizing: border-box; border: 1px solid #2f3162; border-radius: 4px; color: #2f3162; font-size: 12px; font-weight: bold; line-height: 1.3; text-decoration: none;">Державна служба якості освіти України</a></p>
-<p><a href="https://ispukr.org.ua/" target="_blank" rel="noopener" style="display: block; width: 160px; margin: 0 auto 10px; padding: 8px 6px; box-sizing: border-box; border: 1px solid #2f3162; border-radius: 4px; color: #2f3162; font-size: 12px; font-weight: bold; line-height: 1.3; text-decoration: none;">Інститут спеціальної педагогіки і психології імені Миколи Ярмаченка НАПН України</a></p>
-<p><a href="https://zakon.rada.gov.ua/laws/main" target="_blank" rel="noopener" style="display: block; width: 160px; margin: 0 auto 10px; padding: 8px 6px; box-sizing: border-box; border: 1px solid #2f3162; border-radius: 4px; color: #2f3162; font-size: 12px; font-weight: bold; line-height: 1.3; text-decoration: none;">Законодавство України — Верховна Рада України</a></p>
+<div class="useful-links">
+<p><a class="useful-link" href="https://www.kmu.gov.ua/" target="_blank" rel="noopener">Кабінет Міністрів України</a></p>
+<p><a class="useful-link" href="https://mon.gov.ua/" target="_blank" rel="noopener">Міністерство освіти і науки України</a></p>
+<p><a class="useful-link" href="https://koda.gov.ua/" target="_blank" rel="noopener">Київська обласна військова адміністрація</a></p>
+<p><a class="useful-link" href="https://kyiv-oblosvita.gov.ua/" target="_blank" rel="noopener">Департамент освіти і науки Київської ОВА</a></p>
+<p><a class="useful-link" href="https://nazk.gov.ua/uk/" target="_blank" rel="noopener">Національне агентство з питань запобігання корупції</a></p>
+<p><a class="useful-link" href="https://sqe.gov.ua/" target="_blank" rel="noopener">Державна служба якості освіти України</a></p>
+<p><a class="useful-link" href="https://ispukr.org.ua/" target="_blank" rel="noopener">Інститут спеціальної педагогіки і психології імені Миколи Ярмаченка НАПН України</a></p>
+<p><a class="useful-link" href="https://zakon.rada.gov.ua/laws/main" target="_blank" rel="noopener">Законодавство України — Верховна Рада України</a></p>
 </div>
 
 
