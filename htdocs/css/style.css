@@ -439,12 +439,9 @@ a:focus-visible {
 .hero-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s4) var(--s3); align-items: center; }
 .hero-text { grid-column: 1 / -1; }
 .hero-media { grid-column: 1 / -1; }
-@media (min-width: 900px) {
-	.hero-text { grid-column: 1 / span 9; }
-}
 .hero h1 { font-size: 3rem; }   /* 48px */
 @media (max-width: 767px) { .hero h1 { font-size: 2rem; } }
-.hero-lead { font-size: 1.125rem; max-width: 60ch; margin-bottom: var(--s4); }
+.hero-lead { font-size: 1.125rem; max-width: none; margin-bottom: var(--s4); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
 
 /* Слайдер */
