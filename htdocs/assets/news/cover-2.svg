@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+	<!-- Обкладинка новини без фото: корпус Центру з березовою алеєю -->
+	<rect width="1200" height="800" fill="#eaf1fb"/>
+	<circle cx="1040" cy="150" r="60" fill="#ffe358"/>
+	<path d="M150 190a44 44 0 0 1 84-18 36 36 0 0 1 62 26 30 30 0 0 1-4 58H154a34 34 0 0 1-4-66z" fill="#ffffff"/>
+	<rect y="620" width="1200" height="180" fill="#cfe3b8"/>
+	<rect y="620" width="1200" height="8" fill="#1d1d1b"/>
+	<!-- доріжка -->
+	<path d="M560 628h80l120 172H440z" fill="#f5f7fa" stroke="#1d1d1b" stroke-width="6" stroke-linejoin="round"/>
+	<!-- корпус: два поверхи, центральний вхід -->
+	<g stroke="#1d1d1b" stroke-width="8" stroke-linejoin="round">
+		<rect x="300" y="330" width="600" height="294" fill="#f7e3d6"/>
+		<path d="M280 336h640l-40-60H320z" fill="#004bc1"/>
+		<rect x="520" y="300" width="160" height="324" fill="#f7e3d6"/>
+		<path d="M508 306h184l-92-70z" fill="#004bc1"/>
+		<path d="M560 624v-104a40 40 0 0 1 80 0v104z" fill="#8a5a33"/>
+	</g>
+	<g fill="#ffffff" stroke="#1d1d1b" stroke-width="6">
+		<rect x="340" y="380" width="56" height="72"/><rect x="420" y="380" width="56" height="72"/>
+		<rect x="724" y="380" width="56" height="72"/><rect x="804" y="380" width="56" height="72"/>
+		<rect x="340" y="500" width="56" height="72"/><rect x="420" y="500" width="56" height="72"/>
+		<rect x="724" y="500" width="56" height="72"/><rect x="804" y="500" width="56" height="72"/>
+		<rect x="572" y="360" width="56" height="72"/>
+	</g>
+	<!-- прапор -->
+	<path d="M600 236v-90" stroke="#1d1d1b" stroke-width="6"/>
+	<rect x="600" y="146" width="70" height="22" fill="#004bc1"/>
+	<rect x="600" y="168" width="70" height="22" fill="#ffe358"/>
+	<!-- берези -->
+	<g>
+		<rect x="140" y="400" width="22" height="226" fill="#ffffff" stroke="#1d1d1b" stroke-width="6"/>
+		<path d="M140 450h10M152 500h10M140 560h12" stroke="#1d1d1b" stroke-width="8"/>
+		<ellipse cx="151" cy="360" rx="70" ry="100" fill="#a8d17f" stroke="#1d1d1b" stroke-width="6"/>
+		<rect x="1040" y="400" width="22" height="226" fill="#ffffff" stroke="#1d1d1b" stroke-width="6"/>
+		<path d="M1040 460h10M1052 520h10M1040 580h12" stroke="#1d1d1b" stroke-width="8"/>
+		<ellipse cx="1051" cy="360" rx="70" ry="100" fill="#a8d17f" stroke="#1d1d1b" stroke-width="6"/>
+		<rect x="220" y="470" width="16" height="156" fill="#ffffff" stroke="#1d1d1b" stroke-width="5"/>
+		<ellipse cx="228" cy="440" rx="48" ry="70" fill="#7fb85a" stroke="#1d1d1b" stroke-width="5"/>
+		<rect x="964" y="470" width="16" height="156" fill="#ffffff" stroke="#1d1d1b" stroke-width="5"/>
+		<ellipse cx="972" cy="440" rx="48" ry="70" fill="#7fb85a" stroke="#1d1d1b" stroke-width="5"/>
+	</g>
+</svg>

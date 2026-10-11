@@ -769,22 +769,17 @@ def time_html(n, cls="news-date"):
 	return '<time class="%s" datetime="%s">%s</time>' % (cls, n["date"], format_date(n["date"]))
 
 
-def date_tile(d):
-	"""Плитка з датою для новини без фото — замість однакової картинки в усіх таких новин."""
-	parts = d.split("-") if d else []
-	if len(parts) == 3:
-		big, small = str(int(parts[2])), "%s %s" % (MONTHS_GEN[int(parts[1]) - 1], parts[0])
-	elif len(parts) == 2:
-		big, small = MONTHS_NOM[int(parts[1]) - 1], parts[0]
-	else:
-		big, small = d or ORG_SHORT, ""
-	cls = "date-tile" if big.isdigit() else "date-tile date-tile--word"
-	return '<span class="%s" aria-hidden="true"><span class="date-tile-big">%s</span><span class="date-tile-small">%s</span></span>' % (cls, esc(big), esc(small))
+NEWS_COVERS = ["./assets/news/cover-%d.svg" % k for k in range(1, 5)]   # тематичні ілюстрації для новин без фото
+
+
+def news_cover(n):
+	"""Ілюстрація для новини без фото; одна й та сама новина завжди отримує ту саму, сусідні — різні."""
+	return NEWS_COVERS[sum(map(ord, n["file"])) % len(NEWS_COVERS)]
 
 
 def news_card(n, heading="h2"):
 	img = thumbnail(n["image"])
-	pic = '<img src="%s" alt="" loading="lazy">' % img if img else date_tile(n["date"])
+	pic = '<img src="%s" alt="" loading="lazy">' % (img or news_cover(n))
 	return f'''<li class="news-item">
 	<div class="news-thumb">{pic}</div>
 	<div class="news-body">
@@ -846,6 +841,8 @@ def build_news(items):
 			'\t\t\t\t<li><a href="./%s"><span class="news-aside-title">%s</span>%s</a></li>' % (o["file"], esc(o["title"]), ("<span class=\"news-aside-date\">%s</span>" % format_date(o["date"])) if o["date"] else "")
 			for o in others)
 		top = "\n" + time_html(n) if n["date"] else ""
+		if not n["image"]:
+			top += '\n<img class="news-cover" src="%s" alt="" width="1200" height="800">' % news_cover(n)
 		bottom = '\n<p class="news-back"><a href="./news.html">← Усі новини</a></p>'
 		content = clean_content(n["content"], n["title"])
 		out = page_html(n["file"], n["title"], n["description"], content, top=top, bottom=bottom, aside=aside)

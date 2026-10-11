@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+	<!-- Обкладинка новини без фото: дерево знань з відкритою книгою (мотив логотипа Центру) -->
+	<rect width="1200" height="800" fill="#eaf1fb"/>
+	<circle cx="1010" cy="160" r="64" fill="#ffe358"/>
+	<rect y="660" width="1200" height="140" fill="#cfe3b8"/>
+	<rect y="660" width="1200" height="8" fill="#1d1d1b"/>
+	<!-- крона: спершу обвідка всіх кіл, потім заливка поверх — без внутрішніх ліній -->
+	<g fill="#1d1d1b" stroke="#1d1d1b" stroke-width="16">
+		<circle cx="600" cy="300" r="190"/>
+		<circle cx="430" cy="380" r="120"/>
+		<circle cx="770" cy="380" r="120"/>
+		<circle cx="520" cy="190" r="110"/>
+		<circle cx="690" cy="190" r="110"/>
+	</g>
+	<g fill="#7fb85a">
+		<circle cx="600" cy="300" r="190"/>
+		<circle cx="430" cy="380" r="120"/>
+		<circle cx="770" cy="380" r="120"/>
+		<circle cx="520" cy="190" r="110"/>
+		<circle cx="690" cy="190" r="110"/>
+	</g>
+	<!-- стовбур і гілки -->
+	<path d="M570 664V470l-90-90M630 664V470l90-90M600 470V330" fill="none" stroke="#1d1d1b" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+	<path d="M570 664V470l-90-90M630 664V470l90-90M600 470V330" fill="none" stroke="#8a5a33" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+	<!-- відкрита книга -->
+	<g stroke="#1d1d1b" stroke-width="8" stroke-linejoin="round">
+		<path d="M600 300c-50-34-120-40-180-30v150c60-10 130-4 180 30z" fill="#ffffff"/>
+		<path d="M600 300c50-34 120-40 180-30v150c-60-10-130-4-180 30z" fill="#ffffff"/>
+		<path d="M420 270v150M780 270v150" fill="none"/>
+	</g>
+	<path d="M600 300v150" stroke="#004bc1" stroke-width="10"/>
+	<g stroke="#004bc1" stroke-width="8" stroke-linecap="round">
+		<path d="M455 320c40-6 80-2 115 14M455 355c40-6 80-2 115 14M455 390c40-6 80-2 115 14"/>
+		<path d="M745 320c-40-6-80-2-115 14M745 355c-40-6-80-2-115 14M745 390c-40-6-80-2-115 14"/>
+	</g>
+	<!-- листочки, що летять -->
+	<g fill="#7fb85a" stroke="#1d1d1b" stroke-width="6">
+		<path d="M240 250c30-30 70-30 90 0-30 30-70 30-90 0z"/>
+		<path d="M930 420c30-30 70-30 90 0-30 30-70 30-90 0z"/>
+		<path d="M180 520c24-24 56-24 72 0-24 24-56 24-72 0z"/>
+	</g>
+</svg>

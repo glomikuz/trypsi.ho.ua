@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+	<!-- Обкладинка новини без фото: кубики з літерами, олівець і м'яч — навчання і розвиток -->
+	<rect width="1200" height="800" fill="#f5f7fa"/>
+	<rect y="600" width="1200" height="200" fill="#e3e9f2"/>
+	<rect y="600" width="1200" height="8" fill="#1d1d1b"/>
+	<!-- кубики -->
+	<g stroke="#1d1d1b" stroke-width="8" stroke-linejoin="round">
+		<rect x="330" y="420" width="184" height="184" rx="12" fill="#ffe358"/>
+		<rect x="534" y="420" width="184" height="184" rx="12" fill="#004bc1"/>
+		<rect x="432" y="236" width="184" height="184" rx="12" fill="#7fb85a"/>
+	</g>
+	<g font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="120" text-anchor="middle">
+		<text x="422" y="556" fill="#1d1d1b">А</text>
+		<text x="626" y="556" fill="#ffffff">Б</text>
+		<text x="524" y="372" fill="#1d1d1b">В</text>
+	</g>
+	<!-- олівець -->
+	<g transform="rotate(-28 900 520)" stroke="#1d1d1b" stroke-width="8" stroke-linejoin="round">
+		<rect x="780" y="490" width="260" height="60" fill="#ffe358"/>
+		<rect x="740" y="490" width="44" height="60" fill="#ff9aa2"/>
+		<path d="M1040 490l70 30-70 30z" fill="#f7e3d6"/>
+		<path d="M1088 510l22 10-22 10z" fill="#1d1d1b"/>
+	</g>
+	<!-- м'яч -->
+	<circle cx="200" cy="540" r="62" fill="#ffffff" stroke="#1d1d1b" stroke-width="8"/>
+	<path d="M138 540h124M200 478c-30 30-30 94 0 124M200 478c30 30 30 94 0 124" fill="none" stroke="#004bc1" stroke-width="8"/>
+	<!-- зірочки -->
+	<g fill="#ffe358" stroke="#1d1d1b" stroke-width="6" stroke-linejoin="round">
+		<path d="M220 200l18 38 42 6-30 30 7 42-37-20-37 20 7-42-30-30 42-6z"/>
+		<path d="M930 160l14 30 32 5-23 23 5 32-28-15-28 15 5-32-23-23 32-5z"/>
+	</g>
+</svg>
