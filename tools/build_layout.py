@@ -64,6 +64,7 @@ MENU = [
 	("Традиції", "tradition.html", []),
 	("Прозорість", "prozorist.html", [
 		("Статут", "statut.html"),
+		("Ліцензія", "licenziia.html"),
 		("Освітні програми", "odvit_prog.html"),
 		("Ліцензований обсяг", "ptog_pot.html"),
 		("Вакансії", "vacation.html"),
