@@ -360,7 +360,7 @@ a:focus-visible {
 
 /* Типографіка контенту: рядок 40–80 символів. Галереї, таблиці й вбудовані
    документи на сторінках без бічної колонки займають усю ширину. */
-.prose { max-width: var(--measure); }
+.prose { max-width: var(--measure); overflow-wrap: anywhere; }
 .page:not(.has-aside) > .prose { max-width: none; }
 .page:not(.has-aside) > .prose > :not(.gallery):not(.table-wrap):not(iframe):not(.news-list):not(.cards) { max-width: var(--measure); }
 .prose > *:last-child { margin-bottom: 0; }
