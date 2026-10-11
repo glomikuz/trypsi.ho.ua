@@ -542,7 +542,7 @@ def build_home_content(src):
 	return f'''<section class="hero">
 	<div class="container hero-grid">
 		<div class="hero-text">
-			<h1>{esc(ORG_NAME)}</h1>
+			<h1 class="visually-hidden">{esc(ORG_NAME)}</h1>
 			<p class="hero-lead">Наш Центр — це простір, у якому навчання поєднується з корекційно-розвитковою та реабілітаційною роботою, турботою про здоров’я, безпеку, емоційний добробут і формування життєвої самостійності дитини.</p>
 			<div class="hero-actions">
 				<a class="btn btn-primary" href="./docs.html">Як вступити до Центру</a>
