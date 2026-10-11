@@ -50,7 +50,6 @@
 	--s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 40px; --s6: 48px; --s8: 64px; --s10: 80px;
 
 	--container: 1680px;
-	--measure: 864px;   /* текстовий блок ≤ 900px, ~80 символів у рядку */
 	--aside: 360px;
 	--gutter: 16px;
 	--radius: 8px;
@@ -357,17 +356,14 @@ a:focus-visible {
 .page > .content { grid-column: 1 / -1; min-width: 0; }
 .page > .section-nav { grid-column: 1 / -1; }
 @media (min-width: 1100px) {
-	/* бічна колонка стоїть одразу за текстом, а не біля правого краю */
-	.page.has-aside { grid-template-columns: minmax(0, var(--measure)) minmax(256px, var(--aside)); column-gap: var(--s8); }
+	/* як на головній: вміст на всю ширину контейнера, бічна колонка біля правого краю */
+	.page.has-aside { grid-template-columns: minmax(0, 1fr) minmax(256px, var(--aside)); column-gap: var(--s8); }
 	.page.has-aside > .content { grid-column: 1; }
 	.page.has-aside > .section-nav { grid-column: 2; }
 }
 
-/* Типографіка контенту: рядок 40–80 символів. Галереї, таблиці й вбудовані
-   документи на сторінках без бічної колонки займають усю ширину. */
-.prose { max-width: var(--measure); overflow-wrap: anywhere; }
-.page:not(.has-aside) > .prose { max-width: none; }
-.page:not(.has-aside) > .prose > :not(.gallery):not(.table-wrap):not(iframe):not(.news-list):not(.cards) { max-width: var(--measure); }
+/* Контент займає всю ширину своєї колонки — так само, як блоки на головній */
+.prose { overflow-wrap: anywhere; }
 .prose > *:last-child { margin-bottom: 0; }
 .prose p:has(> img:only-child), .prose p:has(> a:only-child > img:only-child) { max-width: none; }
 .prose img { display: block; margin: var(--s3) auto; border-radius: var(--radius); }
@@ -428,7 +424,7 @@ a:focus-visible {
 .prose p.doc .file-meta { grid-column: 2; }
 .prose p.doc + :not(.doc) { margin-top: var(--s3); }
 
-.prose figure { margin: var(--s4) 0; max-width: var(--measure); }
+.prose figure { margin: var(--s4) 0; }
 .prose figure img { margin: 0 0 var(--s1); border: 1px solid var(--c-border); }
 .prose figcaption { font-size: 0.875rem; color: var(--c-text-2); }
 
