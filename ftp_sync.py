@@ -262,10 +262,81 @@ def download_sync(ftp, remote_base, local_base, cfg):
     sync_folder(remote_base, local_base)
     print(f"\n📊 Підсумок: Завантажено файлів: {transferred_count}, Пропущено (без змін): {skipped_count}")
 
+def git_lines(*args):
+    import subprocess
+    r = subprocess.run(["git", *args], capture_output=True, text=True)
+    return r.stdout.splitlines() if r.returncode == 0 else None
+
+def check_sync(ftp, remote_base, local_base, cfg):
+    """
+    Перевірка перед upload: чи не з'явилося на сервері щось нове або змінене з часу
+    останнього вивантаження. Нічого не завантажує й не перезаписує.
+    Еталон «що ми вивантажували востаннє» — гілка в GitHub (upstream, напр. origin/fix/test1).
+    """
+    print(f"🔎 Перевірка змін на FTP '{remote_base}' (без завантаження)...")
+    ref = (git_lines("rev-parse", "--abbrev-ref", "@{u}") or ["HEAD"])[0]
+    prefix = os.path.relpath(os.path.abspath(local_base), os.getcwd()).replace("\\", "/")
+    # розміри файлів у еталонній версії: {шлях від local_base: розмір}
+    base_sizes = {}
+    for line in git_lines("ls-tree", "-r", "-l", ref, "--", prefix) or []:
+        meta, path = line.split("\t", 1)
+        base_sizes[path[len(prefix) + 1:]] = int(meta.split()[3])
+    local_changed = {p[len(prefix) + 1:] for p in git_lines("diff", "--name-only", ref, "--", prefix) or []}
+    print(f"  Еталон: {ref} ({len(base_sizes)} файлів), локально змінено: {len(local_changed)}\n")
+
+    new_files, changed_files = [], []
+
+    def remote_bytes(r_path, name):
+        buf = bytearray()
+        ftp.retrbinary(f"RETR {name}", buf.extend)
+        return bytes(buf)
+
+    def walk(r_path, rel):
+        try:
+            ftp.cwd(r_path)
+        except Exception as e:
+            print(f"\n❌ Не вдалося відкрити віддалену папку '{r_path}': {e}")
+            return
+        for item, (is_dir, r_size) in get_remote_directory_items(ftp).items():
+            if should_ignore(item):
+                continue
+            rel_item = f"{rel}/{item}" if rel else item
+            if is_dir:
+                walk(r_path.rstrip("/") + "/" + item, rel_item)
+                ftp.cwd(r_path)
+                continue
+            local_file = os.path.join(local_base, rel_item)
+            if not os.path.exists(local_file):
+                new_files.append(rel_item)
+            elif rel_item in base_sizes:
+                if r_size != base_sizes[rel_item]:
+                    changed_files.append(rel_item)
+                elif rel_item in local_changed:
+                    # той самий розмір, але файл збираємося перезаписати — порівнюємо вміст
+                    import subprocess
+                    base = subprocess.run(["git", "show", f"{ref}:{prefix}/{rel_item}"], capture_output=True).stdout
+                    if remote_bytes(r_path, item) != base:
+                        changed_files.append(rel_item)
+            elif r_size != os.path.getsize(local_file):
+                changed_files.append(rel_item)
+
+    walk(remote_base, "")
+
+    for f in new_files:
+        print(f"  🆕 Новий на сервері (локально немає): {f}")
+    for f in changed_files:
+        print(f"  ✏️  Змінено на сервері після останнього upload: {f}")
+    if new_files or changed_files:
+        print(f"\n⚠️ На сервері є зміни: нових {len(new_files)}, змінених {len(changed_files)}. "
+              "Перед upload з'ясуйте, звідки вони, і перенесіть у локальну копію, інакше upload їх затре.")
+        return False
+    print("✅ На сервері нічого нового — можна вивантажувати.")
+    return True
+
 def main():
-    parser = argparse.ArgumentParser(description="Скрипт синхронізації FTP (Download / Upload)")
-    parser.add_argument("action", choices=["download", "upload", "down", "up", "pull", "push"],
-                        help="Дія: download (скачати) або upload (вивантажити)")
+    parser = argparse.ArgumentParser(description="Скрипт синхронізації FTP (Download / Upload / Check)")
+    parser.add_argument("action", choices=["download", "upload", "check", "down", "up", "pull", "push"],
+                        help="Дія: download (скачати), upload (вивантажити) або check (перевірити, чи не змінилося щось на сервері)")
     parser.add_argument("--env", default=".env", help="Шлях до .env файлу (за замовчуванням: .env)")
 
     args = parser.parse_args()
@@ -281,6 +352,10 @@ def main():
             download_sync(ftp, remote_dir, local_dir, cfg)
         elif args.action in ("upload", "up", "push"):
             upload_sync(ftp, local_dir, remote_dir, cfg)
+        elif args.action == "check":
+            ok = check_sync(ftp, remote_dir, local_dir, cfg)
+            ftp.quit()
+            sys.exit(0 if ok else 2)
         ftp.quit()
         print("\n✨ Готово! Операцію завершено успішно.")
     except KeyboardInterrupt:
