@@ -559,6 +559,10 @@ a:focus-visible {
 .links { padding-bottom: var(--s10); }
 .links ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--c-border); }
 .links li { margin: 0; padding: var(--s2) 0; border-bottom: 1px solid var(--c-border); font-size: 1rem; }
+.links-banner { display: inline-flex; align-items: center; gap: var(--s4); margin-bottom: var(--s5); font-weight: 600; }
+.links-banner img { display: block; width: 200px; height: auto; border-radius: 6px; flex-shrink: 0; }
+.links-banner:hover img, .links-banner:focus-visible img { opacity: .85; }
+@media (max-width: 480px) { .links-banner { flex-direction: column; align-items: flex-start; gap: var(--s2); } }
 @media (min-width: 768px) { .links ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s5); } }
 @media (min-width: 1100px) { .links ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 

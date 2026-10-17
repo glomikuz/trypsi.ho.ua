@@ -114,6 +114,11 @@ EXTERNAL_LINKS = [
 	("Законодавство України — Верховна Рада України", "https://zakon.rada.gov.ua/laws/main"),
 ]
 
+# Банер над «Корисними посиланнями» на головній: (підпис, посилання, зображення, alt)
+LINK_BANNER = ("Попередження онлайн-шахрайств — Кіберполіція «Кібер Брама»",
+	"https://stopfraud.gov.ua/cybersecurity-in-life/shahrajski-shemy", "./image/stopfraud_banner.jpg",
+	"Плакат «Захистись від шахраїв разом із нами» з QR-кодом на сайт stopfraud.gov.ua")
+
 # Короткі описи плиток на сторінці-покажчику «Прозорість»
 SECTION_DESC = {
 	"statut.html": "Нова редакція, затверджена Київською обласною радою 29 травня 2025 року",
@@ -568,6 +573,10 @@ def build_home_content():
 		f'\t\t\t<li><h3>{esc(t)}</h3><p>{esc(d)}</p></li>' for t, d in HOME_FACTS)
 	links_html = "\n".join(
 		f'\t\t\t<li><a href="{h}" target="_blank" rel="noopener">{esc(n)}{EXT_SUFFIX}</a></li>' for n, h in EXTERNAL_LINKS)
+	bt, bh, bsrc, balt = LINK_BANNER
+	banner_html = (f'<a class="links-banner" href="{bh}" target="_blank" rel="noopener">'
+		f'<img src="{bsrc}" alt="{esc(balt)}" width="320" height="226" loading="lazy">'
+		f'<span>{esc(bt)}{EXT_SUFFIX}</span></a>')
 
 	return f'''<section class="hero">
 	<div class="container hero-grid">
@@ -604,6 +613,7 @@ def build_home_content():
 
 	<nav class="home-section links" aria-labelledby="links-title">
 		<h2 id="links-title">Корисні посилання</h2>
+		{banner_html}
 		<ul>
 {links_html}
 		</ul>
