@@ -83,6 +83,7 @@ MENU = [
 		("Стратегія розвитку на 2025–2029 роки", "strategy.html"),
 		("Положення про внутрішню систему забезпечення якості освіти", "yakist_osvity.html"),
 		("Положення про пансіон", "pansion.html"),
+		("Положення про психолого-педагогічний консиліум", "konsilium.html"),
 	]),
 	("Антикорупція", "anti_corr_program.html", [
 		("Антикорупційна програма", "anti_corr_program.html"),
@@ -144,6 +145,7 @@ SECTION_DESC = {
 	"strategy.html": "Місія, цілі, проєкти та дорожня карта розвитку Центру",
 	"yakist_osvity.html": "Напрями, критерії та процедури забезпечення якості освіти",
 	"pansion.html": "Умови проживання, утримання та харчування учнів у пансіоні",
+	"konsilium.html": "Склад, завдання та порядок роботи психолого-педагогічного консиліуму",
 }
 
 ICON_A11Y = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/>'
