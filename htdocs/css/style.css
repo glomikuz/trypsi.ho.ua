@@ -388,6 +388,14 @@ a:focus-visible {
 .prose .schedule .num { width: 2.5em; text-align: center; font-weight: 600; }
 .prose .schedule tr.day-row th { background: var(--c-surface); font-weight: 600; font-size: 1rem; }
 .prose tr.total td { font-weight: 600; background: var(--c-surface); }
+.prose tr.day-row th { background: var(--c-surface); font-weight: 600; }
+/* Повний текст документа на сторінці: зміст і згорнуті великі таблиці (меню) */
+.prose .doc-toc { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); padding: var(--s2) var(--s3) var(--s2) var(--s5); margin: var(--s3) 0; }
+.prose .doc-toc li { margin: 4px 0; }
+.prose details.doc-more { border: 1px solid var(--c-border); border-radius: var(--radius); margin: var(--s2) 0; }
+.prose details.doc-more > summary { cursor: pointer; font-weight: 600; padding: var(--s2) var(--s3); background: var(--c-surface); border-radius: var(--radius); }
+.prose details.doc-more[open] > summary { border-bottom: 1px solid var(--c-border); border-radius: var(--radius) var(--radius) 0 0; }
+.prose details.doc-more > :not(summary) { margin-left: var(--s3); margin-right: var(--s3); }
 .prose .doc-subtitle { font-weight: 600; }
 .prose .doc-approve { text-align: right; }
 .prose .doc-sign { margin-top: var(--s3); }
